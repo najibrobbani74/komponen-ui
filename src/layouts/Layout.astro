@@ -17,12 +17,12 @@ const { title } = Astro.props;
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-	<script is:inline src="https://unpkg.com/prettier@3.3.3/standalone.js"></script>
-	<script is:inline src="https://unpkg.com/prettier@3.3.3/plugins/html.js"></script>
+	<script src="https://unpkg.com/prettier@3.3.3/standalone.js"></script>
+	<script src="https://unpkg.com/prettier@3.3.3/plugins/html.js"></script>
 
 	<!-- Prism.js for syntax highlighting -->
 	<script src="../script/prism.js"></script>
-	<link rel="stylesheet" href="../../src/style/prism.css">
+	<link rel="stylesheet" href={'.'+import.meta.env.BASE_URL+"/style/prism.css"}>
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>

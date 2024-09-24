@@ -1,17 +1,4 @@
 {
-  "base": {
-    "name": "Base",
-    "key": "base",
-    "children": {
-      "Home": {
-        "key": "home",
-        "name": "Home",
-        "image": "blog_bloga.jpg",
-        "type": "html",
-        "syntax": "<section class='text-white body-font h-screen bg-cover bg-no-repeat bg-[url(`https://najibrobbani74.github.io/komponen-ui/images/pexels-eberhard-grossgasteiger-1612351.jpg`)]'> <div class='bg-black bg-opacity-30 '> <div class='container mx-auto flex px-5 py-24 h-screen items-center justify-center flex-col' > <div class='text-center lg:w-2/3 w-full '> <div class='text-3xl cursor-pointer font-bold mb-10' href='/' >Komponen<b class='text-[#00d7c0]'>UI</b></div > <h1 class='title-font sm:text-4xl text-3xl mb-4 font-medium text-white' > Build Stunning Interfaces with Speed </h1> <p class='mb-8 leading-relaxed'> Tailwind UI Kit adalah kumpulan komponen antarmuka pengguna yang sepenuhnya dibangun dengan Tailwind CSS. Didesain untuk mempercepat proses pengembangan web, UI Kit ini menyediakan elemen siap pakai seperti tombol, kartu, modals, hingga navigasi, yang mudah dikustomisasi sesuai kebutuhan proyek Anda. Dengan pendekatan utility-first dari Tailwind, setiap komponen dapat disesuaikan secara granular tanpa mengorbankan performa atau konsistensi desain, membantu Anda menciptakan antarmuka modern yang responsif dan elegan dengan cepat. </p> <div class='flex justify-center'> <a href='#' class='inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg' > Get Started </a> <a href='https://github.com/najibrobbani74/komponen-ui' target='_blank' class='ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg' > Give me github star !! </a> </div> </div> </div> </div> </section>"
-      }
-    }
-  },
   "button": {
     "name": "Button",
     "key": "button",
