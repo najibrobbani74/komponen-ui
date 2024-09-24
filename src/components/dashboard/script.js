@@ -1,8 +1,5 @@
-import data from "../data/data.json";
-
-// import { js_beautify } from "https://cdn.jsdelivr.net/npm/js-beautify@1.14.0/js/lib/beautify.js"
-
-
+import data from "../../data/data.json";
+import * as Prism from "prismjs";
 
 window["actionTabComponentDropdown"] = (element) => {
   document.querySelector("#tab-component-container .tab-active")?.classList.remove("tab-active");

@@ -1,8 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Body from "./Body.astro";
-import Navbar from "./Navbar.astro";
-import Sidebar from "./Sidebar.astro";
+import Body from "../components/dashboard/Body.astro";
+import Navbar from "../components/dashboard/Navbar.astro";
+import Sidebar from "../components/dashboard/Sidebar.astro";
 ---
 
 <style is:global>
@@ -24,6 +24,6 @@ import Sidebar from "./Sidebar.astro";
   </script>
 <Layout title="Komponen UI">
   <Navbar />
-  <Sidebar />
-  <Body/>
+  <Sidebar  />
+  <Body />
 </Layout>
