@@ -1,10 +1,11 @@
-You can open the modal using ID.showModal() method
+<!-- You can open the modal using ID.showModal() method -->
 <dialog id="my_modal_3" class="modal">
   <div class="modal-box">
     <form method="dialog">
       <h1 class="text-2xl font-bold">Search Component</h1>
       <button
       id="x-button"
+      onclick="clearSearchInput();"
         class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
         >✕</button
       >
@@ -20,16 +21,12 @@ You can open the modal using ID.showModal() method
     </div>
   </div>
 </dialog>
-<script is:inline>
-  import dataRaw from "../data/data.json";
-  import Fuse from "../../node_modules/fuse.js";
-  document.getElementById("x-button").addEventListener("click", () => {
-    my_modal_3.close();
-    clearSearchInput();
-  });
+<script>
+  import dataRaw from "../../data/data.json";
+  import Fuse from "../../../node_modules/fuse.js";
   let data = Object.values(dataRaw);
   data.map((item) => {
-    Object.values(item.children).map((child) => {
+    Object.values(item.children).map((child:any) => {
       child["tab-key"] = item.key;
       child["tab-name"] = item.name;
       data.push(child);
@@ -47,14 +44,14 @@ You can open the modal using ID.showModal() method
     threshold: 0.3,
   });
 
-  searchInput.addEventListener("input", (e) => {
+  searchInput.addEventListener("input", (e:any) => {
     const query = e.target.value;
     const results = query ? fuse.search(query) : [];
 
     // Tampilkan dropdown
     dropdown.innerHTML = "";
     if (results.length > 0) {
-      results.forEach((result) => {
+      results.forEach((result:any) => {
         const div = document.createElement("div");
         div.className =
           "w-full py-3 px-3 cursor-pointer hover:bg-gray-100 flex items-center justify-between";
@@ -87,31 +84,31 @@ You can open the modal using ID.showModal() method
       (
         document.querySelector(
           `#tab-dropdown-body li [data-key="${key}"]`
-        ) 
+        ) as HTMLElement
       ).click();
       setTimeout(() => {
         (
           document.querySelector(`#tab-component-container`)
-            .children[0] 
+            .children[0] as HTMLElement
         ).click();
       }, 100);
     } else {
       (
         document.querySelector(
           `#tab-dropdown-body li [data-key="${tabKey}"]`
-        ) 
+        ) as HTMLElement
       ).click();
       setTimeout(() => {
         (
           document.querySelector(
             `#tab-component-container [data-key="${tabKey}"][data-component-key="${key}"]`
-          )
+          ) as HTMLElement
         ).click();
       }, 100);
     }
   };
   window["clearSearchInput"] = () => {
-    (searchInput ).value = "";
+    (searchInput as HTMLInputElement ).value = "";
   };
   document.addEventListener("keydown", (event) => {
     // Check if Ctrl and K are pressed
