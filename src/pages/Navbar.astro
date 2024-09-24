@@ -1,0 +1,53 @@
+---
+import ModalSearch from "./ModalSearch.astro";
+---
+
+<div class="navbar bg-base-100 border-b duration-300 h-16" id="navbar">
+  <div class="w-full flex justify-between">
+    <div class="flex items-center">
+      <div
+        id="sidebar-toggle"
+        class="btn btn-ghost flex justify-center items-center fa fa-bars"
+      >
+      </div>
+      <a class="text-xl cursor-pointer font-bold" href="/"
+        >Komponen<b class="text-accent">UI</b></a
+      >
+    </div>
+    <div class="form-control">
+      <button id="search-modal-trigger" onclick="my_modal_3.showModal();document.getElementById('searchInput').focus()" class="btn btn-outline btn-accent w-96 justify-start">
+        <i class="fa fa-search"></i> Search 
+      </button>
+    </div>
+    <button id="show-code-toggle" class="btn btn-outline btn-accent min-w-32"><i class="fa fa-code"></i> Show Code</button>
+    <button id="preview-toggle" class="btn btn-outline btn-accent hidden min-w-32"><i class="fa fa-eye"></i> Preview</button>
+    <input
+      id="theme-toggle"
+      type="checkbox"
+      value="synthwave"
+      class="toggle theme-controller col-span-2 col-start-1 row-start-1 border-sky-400 bg-amber-300 [--tglbg:theme(colors.sky.500)] checked:border-blue-800 checked:bg-blue-300 checked:[--tglbg:theme(colors.blue.900)]"
+    />
+  </div>
+</div>
+<ModalSearch></ModalSearch>
+<script>
+  document.getElementById("theme-toggle").addEventListener("change", (e) => {
+    if ((e.target as HTMLInputElement).checked) {
+      document.documentElement.setAttribute("data-theme", "dark");
+    } else {
+      document.documentElement.setAttribute("data-theme", "light");
+    }
+  });
+  document.getElementById("show-code-toggle").addEventListener("click", () => {
+    document.getElementById("code-section").classList.remove("hidden");
+    document.getElementById("preview-section").classList.add("hidden");
+    document.getElementById("show-code-toggle").classList.add("hidden");
+    document.getElementById("preview-toggle").classList.remove("hidden");
+  });
+  document.getElementById("preview-toggle").addEventListener("click", () => {
+    document.getElementById("code-section").classList.add("hidden");
+    document.getElementById("preview-section").classList.remove("hidden");
+    document.getElementById("show-code-toggle").classList.remove("hidden");
+    document.getElementById("preview-toggle").classList.add("hidden");
+  });
+</script>

@@ -1,0 +1,115 @@
+---
+import CustomImage from "../components/CustomImage.astro";
+import data from "../data/data.json";
+import { Image } from "astro:assets";
+---
+<style is:inline>
+  @layer utilities {
+      /* Hide scrollbar for Chrome, Safari and Opera */
+      .no-scrollbar::-webkit-scrollbar {
+          display: none;
+      }
+     /* Hide scrollbar for IE, Edge and Firefox */
+      .no-scrollbar {
+          -ms-overflow-style: none;  /* IE and Edge */
+          scrollbar-width: none;  /* Firefox */
+    }
+  }
+</style>
+<div
+  id="sidebar"
+  class="sidebar top-0 left-0 h-full w-64 bg-base-200 shadow-lg fixed"
+>
+  <!-- dropdown tab -->
+  <details class="dropdown p-2 w-full">
+    <summary class="btn w-full flex justify-between"
+      ><span id="tab-dropdown-button">{data[Object.keys(data)[0]].name}</span><i
+        class="fa fa-caret-down"></i></summary
+    >
+    <ul
+      id="tab-dropdown-body"
+      class="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow"
+    >
+      {
+        Object.values(data).map((component) => (
+          <li>
+            <span onclick={"actionTabDropdown(this)"} data-key={component.key}>
+              {component.name}
+            </span>
+          </li>
+        ))
+      }
+    </ul>
+  </details>
+  <div id="tab-component-container" class="overflow-y-auto max-h-[calc(100vh_-_4rem)] no-scrollbar">
+    {
+      Object.values(data[Object.keys(data)[0]].children).map(
+        (entry: { key: string; name: string; image: string }) => {
+          return (
+            <div
+              class="p-3 cursor-pointer"
+              data-key={Object.keys(data)[0]}
+              data-component-key={entry.key}
+              onclick="actionTabComponentDropdown(this)"
+            >
+              <div class="data-title text-sm my-1">{entry.name}</div>
+              <div class="bg-white w-full h-36 p-1 flex items-center justify-center rounded-xl">
+                <img
+                  class="data-image max-h-36"
+                  src={"../src/data/images/" + entry.image}
+                  alt={entry.name}
+                />
+              </div>
+            </div>
+          );
+        }
+      )
+    }
+  </div>
+</div>
+<script>
+  import data from "../data/data.json";
+  document.getElementById("sidebar-toggle").addEventListener("click", () => {
+    const sidebar = document.getElementById("sidebar");
+    const navbar = document.getElementById("navbar");
+    const body = document.body;
+
+    // sidebar.classList.toggle('hidden');
+    sidebar.classList.toggle("hidden");
+    body.classList.toggle("ml-64");
+  });
+
+  window["actionTabDropdown"] = (element) => {
+    const selectedKey = element.getAttribute("data-key");
+    document.querySelector("#tab-dropdown-button").innerHTML =
+      data[selectedKey].name;
+    let dropdownTabComponentBody = "";
+    Object.values(data[selectedKey].children).forEach(
+      (entry: { key: string; name: string; image: string }) => {
+        dropdownTabComponentBody +=
+          `<div class="p-3 cursor-pointer" data-key='` +
+          selectedKey +
+          `'  data-component-key='` +
+          entry.key +
+          `' onclick='actionTabComponentDropdown(this)'>
+                <div class="data-title text-sm my-1">` +
+          entry.name +
+          `</div>
+                <div class="bg-white w-full h-36 p-1 flex items-center justify-center rounded-xl">
+                    <img class="data-image max-h-32" src="../src/data/images/` +
+          entry.image +
+          `" alt="">
+                </div>
+            </div>`;
+      }
+    );
+    document.querySelector("#tab-component-container").innerHTML =
+      dropdownTabComponentBody;
+    (
+      document.querySelector("#tab-dropdown-body").parentNode as HTMLElement
+    ).removeAttribute("open");
+    (document.getElementById('tab-component-container').children[0] as HTMLElement).click();
+  };
+  
+</script>
+<script src="./script.js"></script>

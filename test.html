@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@latest/dist/full.css" rel="stylesheet">
+    <!-- <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.basic.min.js"></script> -->
+    <title>Search Modal with Dropdown</title>
+</head>
+<body>
+
+<!-- You can open the modal using ID.showModal() method -->
+<button class="btn" onclick="my_modal_3.showModal()">open modal</button>
+<dialog id="my_modal_3" class="modal">
+  <div class="modal-box">
+    <form method="dialog">
+      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+    </form>
+    <h3 class="text-lg font-bold">Hello!</h3>
+    <p class="py-4">Press ESC key or click on ✕ button to close</p>
+  </div>
+</dialog>
+<!-- <script type="module">
+    import dataRaw from './src/data/data.json' with {type:"json"}; // Import data
+    // console.log(data);
+    let data = Object.values(dataRaw);
+
+    const searchInput = document.getElementById('search');
+    const openModalButton = document.getElementById('openModal');
+    const modal = document.getElementById('modal');
+    const closeModalButton = document.getElementById('closeModal');
+    const closeBtn = document.getElementById('closeBtn');
+    const dropdown = document.getElementById('dropdown');
+
+    // Inisialisasi Fuse.js
+    const fuse = new Fuse(data, {
+        keys: ['key'],
+        threshold: 0.3,
+    });
+
+    // Fungsi untuk menampilkan modal dengan dropdown hasil pencarian
+    const showModal = () => {
+        const query = searchInput.value;
+        const results = query ? fuse.search(query) : [];
+        
+        dropdown.innerHTML = ''; // Kosongkan hasil sebelumnya
+        
+        if (results.length > 0) {
+            results.forEach(result => {
+                const div = document.createElement('div');
+                div.textContent = result.item.name;
+                div.addEventListener('click', () => {
+                    alert(`You selected: ${result.item.name}`);
+                    searchInput.value = result.item.name;
+                    dropdown.innerHTML = ''; // Kosongkan dropdown
+                });
+                dropdown.appendChild(div);
+            });
+            dropdown.style.display = 'block'; // Tampilkan dropdown
+        } else {
+            dropdown.innerHTML = 'No results found.';
+            dropdown.style.display = 'block'; // Tampilkan dropdown meski tidak ada hasil
+        }
+        modal.classList.add('modal-open'); // Tampilkan modal
+    };
+
+    // Event Listener
+    openModalButton.addEventListener('click', ()=> {
+        
+        showModal();
+    });
+    closeModalButton.addEventListener('click', () => modal.classList.remove('modal-open'));
+    closeBtn.addEventListener('click', () => modal.classList.remove('modal-open'));
+
+    // Sembunyikan modal saat mengklik di luar
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            modal.classList.remove('modal-open');
+        }
+    };
+
+    // Event Listener untuk input
+    searchInput.addEventListener('input', () => {
+        const query = searchInput.value;
+        const results = query ? fuse.search(query) : [];
+        
+        dropdown.innerHTML = ''; // Kosongkan hasil sebelumnya
+        if (results.length > 0) {
+            results.forEach(result => {
+                const div = document.createElement('div');
+                div.textContent = result.item.title;
+                dropdown.appendChild(div);
+            });
+            dropdown.style.display = 'block'; // Tampilkan dropdown
+        } else {
+            dropdown.innerHTML = 'No results found.';
+            dropdown.style.display = 'block'; // Tampilkan dropdown meski tidak ada hasil
+        }
+    });
+</script> -->
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+---
+---
+
+<section class="">
+    <div id="preview-section">
+        <iframe title="Component Preview" id="iframe-preview" srcdoc={""} width="100%"  class="h-[calc(100vh_-_4rem)] bg-white" sandbox="allow-scripts"></iframe>
+    </div>
+    <div id="code-section" class="hidden m-0 overflow-y-scroll h-[calc(100vh_-_4rem)]" style="background-color: #272822;">
+        <div class="p-2 flex justify-end items-center w-full">
+            <button id="copy-button" class="btn btn-outline btn-accent" onclick="navigator.clipboard.writeText(document.getElementById('data-real-syntax').innerText);"><i class="fa fa-regular fa-copy"></i> Copy to clipboard</button>
+        </div>
+        <pre class="overflow-y-scroll !m-0 !py-0"><code id="code-block" class="language-html "></code></pre>
+    </div>
+</section>
+<script>
+  
+  document.querySelectorAll('#copy-button').forEach(button => {
+      button.addEventListener('click', () => {
+        // Ambil elemen code di dalam parent .code-block
+        const codeBlock = document.querySelector('#code-block');
+        const range = document.createRange();
+        range.selectNodeContents(codeBlock);
+        const selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+  
+        // Salin ke clipboard
+        try {
+          document.execCommand('copy');
+          alert('Kode berhasil disalin!');
+        } catch (err) {
+          console.error('Gagal menyalin:', err);
+        }
+  
+        // Hapus seleksi
+        selection.removeAllRanges();
+      });
+    });
+</script>
